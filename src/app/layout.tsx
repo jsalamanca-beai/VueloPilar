@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Donde esta Pilar?',
+  title: '¿Dónde está Pilar?',
   description: 'Seguimiento del viaje de Pilar: Singapur - Nueva Delhi - Munich - Madrid',
 };
 

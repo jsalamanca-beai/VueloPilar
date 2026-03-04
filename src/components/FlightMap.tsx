@@ -5,6 +5,7 @@ import L from 'leaflet';
 import { MapContainer, TileLayer, Polyline, CircleMarker, Marker, Popup, Tooltip, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Flight, FlightStatus, getGreatCirclePath } from '@/lib/flights';
+import { type Lang, getTranslations } from '@/lib/i18n';
 
 // Fix Leaflet default marker icon
 delete (L.Icon.Default.prototype as unknown as Record<string, unknown>)._getIconUrl;
@@ -23,6 +24,7 @@ interface FlightMapProps {
   flights: FlightWithStatus[];
   planePosition: [number, number] | null;
   planeBearing: number;
+  lang: Lang;
 }
 
 function createPlaneIcon(bearing: number) {
@@ -57,7 +59,8 @@ function FitBounds({ flights }: { flights: FlightWithStatus[] }) {
   return null;
 }
 
-export default function FlightMap({ flights, planePosition, planeBearing }: FlightMapProps) {
+export default function FlightMap({ flights, planePosition, planeBearing, lang }: FlightMapProps) {
+  const t = getTranslations(lang);
   // Collect unique airports
   const airportMap = new Map<string, Flight['origin']>();
   flights.forEach(({ flight }) => {
@@ -118,7 +121,7 @@ export default function FlightMap({ flights, planePosition, planeBearing }: Flig
           </Tooltip>
           <Popup>
             <strong>{airport.code}</strong><br />
-            {airport.city}, {airport.country}
+            {t.cities[airport.code] || airport.city}, {t.countries[airport.code] || airport.country}
           </Popup>
         </CircleMarker>
       ))}
@@ -126,7 +129,7 @@ export default function FlightMap({ flights, planePosition, planeBearing }: Flig
       {/* Plane marker */}
       {planePosition && (
         <Marker position={planePosition} icon={createPlaneIcon(planeBearing)}>
-          <Popup>Pilar va por aquí</Popup>
+          <Popup>{t.planePopup}</Popup>
         </Marker>
       )}
     </MapContainer>
