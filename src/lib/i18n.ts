@@ -30,6 +30,10 @@ const translations = {
     totalTime: 'Tiempo total',
     airTime: 'Tiempo en el aire',
     waitTime: 'Tiempo de espera',
+    elapsed: 'Llevas',
+    remaining: 'Quedan',
+    notStarted: 'No iniciado',
+    finished: 'Completado',
     cities: {
       SIN: 'Singapur',
       DEL: 'Nueva Delhi',
@@ -72,6 +76,10 @@ const translations = {
     totalTime: 'Gesamtreisezeit',
     airTime: 'Flugzeit',
     waitTime: 'Wartezeit',
+    elapsed: 'Vergangen',
+    remaining: 'Verbleibend',
+    notStarted: 'Nicht gestartet',
+    finished: 'Abgeschlossen',
     cities: {
       SIN: 'Singapur',
       DEL: 'Neu-Delhi',

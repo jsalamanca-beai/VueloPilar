@@ -211,10 +211,29 @@ export default function FlightTracker() {
 
         {/* Journey Progress Bar */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 sm:p-5">
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center justify-between mb-1">
             <span className="text-sm font-medium text-slate-600">{t.journeyProgress}</span>
             <span className="text-sm text-slate-500">{Math.round(overallProgress)}%</span>
           </div>
+          {(() => {
+            const firstDep = new Date(flights[0].departureUTC).getTime();
+            const lastArr = new Date(flights[flights.length - 1].arrivalUTC).getTime();
+            const nowMs = now.getTime();
+            const notStarted = nowMs < firstDep;
+            const done = nowMs >= lastArr;
+            const elapsed = notStarted ? 0 : done ? lastArr - firstDep : nowMs - firstDep;
+            const remaining = notStarted ? lastArr - firstDep : done ? 0 : lastArr - nowMs;
+            return (
+              <div className="flex items-center justify-between mb-3 text-xs text-slate-400">
+                <span>
+                  {t.elapsed}: {notStarted ? <span className="italic">{t.notStarted}</span> : <span className="text-slate-600 font-medium">{formatDuration(elapsed)}</span>}
+                </span>
+                <span>
+                  {t.remaining}: {done ? <span className="text-green-600 font-medium">{t.finished}</span> : <span className="text-slate-600 font-medium">{formatDuration(remaining)}</span>}
+                </span>
+              </div>
+            );
+          })()}
           <div className="relative">
             <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
               <div
