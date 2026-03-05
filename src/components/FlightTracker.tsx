@@ -312,8 +312,22 @@ export default function FlightTracker() {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-2 mt-3 text-xs text-slate-500">
-                <div><span className="text-slate-400">{t.departure}:</span> {flight.departureLocal}</div>
-                <div><span className="text-slate-400">{t.arrival}:</span> {flight.arrivalLocal}</div>
+                <div>
+                  <span className="text-slate-400">{t.departure}:</span>
+                  <div className="ml-1">{flight.departureLocal}</div>
+                  {flight.actualDepartureLocal && (
+                    <div className="ml-1 text-green-600 font-medium">{t.actual}: {flight.actualDepartureLocal}</div>
+                  )}
+                </div>
+                <div>
+                  <span className="text-slate-400">{t.arrival}:</span>
+                  <div className="ml-1">{flight.arrivalLocal}</div>
+                  {flight.actualArrivalLocal ? (
+                    <div className="ml-1 text-green-600 font-medium">{t.actual}: {flight.actualArrivalLocal}</div>
+                  ) : status !== 'programado' ? null : (
+                    <div className="ml-1 text-slate-300 italic">{t.pending}</div>
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -349,8 +363,20 @@ export default function FlightTracker() {
                       <span className="text-slate-400 mx-2">&rarr;</span>
                       <span className="font-medium text-slate-700">{flight.destination.code}</span>
                     </td>
-                    <td className="px-5 py-4 text-slate-600 whitespace-nowrap">{flight.departureLocal}</td>
-                    <td className="px-5 py-4 text-slate-600 whitespace-nowrap">{flight.arrivalLocal}</td>
+                    <td className="px-5 py-4 whitespace-nowrap">
+                      <div className="text-slate-600">{flight.departureLocal}</div>
+                      {flight.actualDepartureLocal && (
+                        <div className="text-xs text-green-600 font-medium mt-0.5">{t.actual}: {flight.actualDepartureLocal}</div>
+                      )}
+                    </td>
+                    <td className="px-5 py-4 whitespace-nowrap">
+                      <div className="text-slate-600">{flight.arrivalLocal}</div>
+                      {flight.actualArrivalLocal ? (
+                        <div className="text-xs text-green-600 font-medium mt-0.5">{t.actual}: {flight.actualArrivalLocal}</div>
+                      ) : status !== 'programado' ? null : (
+                        <div className="text-xs text-slate-300 italic mt-0.5">{t.pending}</div>
+                      )}
+                    </td>
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-2">
                         <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${statusColors[status]}`}>

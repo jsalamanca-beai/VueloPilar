@@ -15,6 +15,10 @@ export interface Flight {
   arrivalUTC: string;
   departureLocal: string;
   arrivalLocal: string;
+  actualDepartureUTC?: string;
+  actualArrivalUTC?: string;
+  actualDepartureLocal?: string;
+  actualArrivalLocal?: string;
 }
 
 export const airports: Record<string, Airport> = {
@@ -34,6 +38,10 @@ export const flights: Flight[] = [
     arrivalUTC: '2026-03-04T18:25:00Z',
     departureLocal: '4 Mar, 20:30 SGT',
     arrivalLocal: '4 Mar, 23:55 IST',
+    actualDepartureUTC: '2026-03-04T12:42:00Z',
+    actualArrivalUTC: '2026-03-04T18:18:00Z',
+    actualDepartureLocal: '4 Mar, 20:42 SGT',
+    actualArrivalLocal: '4 Mar, 23:48 IST',
   },
   {
     flightNumber: 'LH 763',
@@ -44,6 +52,10 @@ export const flights: Flight[] = [
     arrivalUTC: '2026-03-05T05:00:00Z',
     departureLocal: '5 Mar, 01:55 IST',
     arrivalLocal: '5 Mar, 06:00 CET',
+    actualDepartureUTC: '2026-03-04T20:38:00Z',
+    actualArrivalUTC: '2026-03-05T05:12:00Z',
+    actualDepartureLocal: '5 Mar, 02:08 IST',
+    actualArrivalLocal: '5 Mar, 06:12 CET',
   },
   {
     flightNumber: 'LH 1804',

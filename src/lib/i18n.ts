@@ -34,6 +34,9 @@ const translations = {
     remaining: 'Quedan',
     notStarted: 'No iniciado',
     finished: 'Completado',
+    planned: 'Planificada',
+    actual: 'Real',
+    pending: '—',
     cities: {
       SIN: 'Singapur',
       DEL: 'Nueva Delhi',
@@ -80,6 +83,9 @@ const translations = {
     remaining: 'Verbleibend',
     notStarted: 'Nicht gestartet',
     finished: 'Abgeschlossen',
+    planned: 'Geplant',
+    actual: 'Tatsächlich',
+    pending: '—',
     cities: {
       SIN: 'Singapur',
       DEL: 'Neu-Delhi',
